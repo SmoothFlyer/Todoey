@@ -51,7 +51,7 @@ class ToDoListViewController: UITableViewController {
     
     //MARK: TableView Delegate Methods
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-       
+        
         if let item = todoItems?[indexPath.row] {
             do {
                 try realm.write {
@@ -80,7 +80,7 @@ class ToDoListViewController: UITableViewController {
                     try self.realm.write {
                         let newItem = Item()
                         newItem.title = textField.text!
-                        newItem.dateCreated = Date() 
+                        newItem.dateCreated = Date()
                         currentCategory.items.append(newItem)
                     }
                 } catch {
@@ -90,42 +90,42 @@ class ToDoListViewController: UITableViewController {
                 self.tableView.reloadData()
             }
         }
-            
-            alert.addTextField { (alertTextField) in
-                alertTextField.placeholder = "Add new item"
-                textField = alertTextField
-            }
-            
-            alert.addAction(action)
-            
-            present(alert, animated: true, completion: nil)
-            
-        }
-    
         
-        //MARK: Model maipulation methods
-    
-        func loadItems() {
-
-            todoItems = selectedCategory?.items.sorted(byKeyPath: "title", ascending: true)
-
-            tableView.reloadData()
+        alert.addTextField { (alertTextField) in
+            alertTextField.placeholder = "Add new item"
+            textField = alertTextField
         }
+        
+        alert.addAction(action)
+        
+        present(alert, animated: true, completion: nil)
+        
+    }
     
+    
+    //MARK: Model maipulation methods
+    
+    func loadItems() {
+        
+        todoItems = selectedCategory?.items.sorted(byKeyPath: "title", ascending: true)
+        
+        tableView.reloadData()
+    }
 }
+
 
 //Mark: Search bar methods
 
 extension ToDoListViewController: UISearchBarDelegate {
-
+    
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-
-        todoItems = todoItems?.filter(NSPredicate(format: "title CONTAINS[cd] %@", searchBar.text!)).sorted(byKeyPath: "dateCreated", ascending: true)
+        
+        todoItems = todoItems?.filter(NSPredicate(format: "title CONTAINS[cd] %@", searchBar.text!)).sorted(byKeyPath: "dateCreated")
         
         tableView.reloadData()
-    
+        
     }
-
+    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchBar.text?.count == 0 {
             loadItems()
@@ -134,7 +134,5 @@ extension ToDoListViewController: UISearchBarDelegate {
             }
         }
     }
-
 }
-
 
