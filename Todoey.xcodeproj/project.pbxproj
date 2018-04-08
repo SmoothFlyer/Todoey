@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		6C94D948CDAEED065EF9AD3D /* Pods_Todoey.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07F82455B572A68C87E85932 /* Pods_Todoey.framework */; };
 		E219D3632054178C004AE985 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E219D3622054178C004AE985 /* CategoryViewController.swift */; };
+		E2573D0F20645D8900E9DA70 /* SwipeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2573D0E20645D8900E9DA70 /* SwipeTableViewController.swift */; };
 		E2914E4E204C134700F1FEE2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2914E4D204C134700F1FEE2 /* AppDelegate.swift */; };
 		E2914E50204C134700F1FEE2 /* ToDoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2914E4F204C134700F1FEE2 /* ToDoListViewController.swift */; };
 		E2914E53204C134700F1FEE2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2914E51204C134700F1FEE2 /* Main.storyboard */; };
@@ -23,6 +24,7 @@
 		C7E888DC8A001429DA0EE73D /* Pods-Todoey.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Todoey.release.xcconfig"; path = "Pods/Target Support Files/Pods-Todoey/Pods-Todoey.release.xcconfig"; sourceTree = "<group>"; };
 		D70CEB3DEF38F2E231BE40E7 /* Pods-Todoey.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Todoey.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Todoey/Pods-Todoey.debug.xcconfig"; sourceTree = "<group>"; };
 		E219D3622054178C004AE985 /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
+		E2573D0E20645D8900E9DA70 /* SwipeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeTableViewController.swift; sourceTree = "<group>"; };
 		E2914E4A204C134700F1FEE2 /* Todoey.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Todoey.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2914E4D204C134700F1FEE2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E2914E4F204C134700F1FEE2 /* ToDoListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoListViewController.swift; sourceTree = "<group>"; };
@@ -88,6 +90,7 @@
 		E2AE90F3204EBD710067032E /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				E2573D0E20645D8900E9DA70 /* SwipeTableViewController.swift */,
 				E219D3622054178C004AE985 /* CategoryViewController.swift */,
 				E2914E4F204C134700F1FEE2 /* ToDoListViewController.swift */,
 			);
@@ -159,7 +162,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0920;
-				LastUpgradeCheck = 0920;
+				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = AhmedHabib;
 				TargetAttributes = {
 					E2914E49204C134700F1FEE2 = {
@@ -224,11 +227,13 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-Todoey/Pods-Todoey-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/SwipeCellKit/SwipeCellKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwipeCellKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -264,6 +269,7 @@
 				E2B2B4BA205DA3300000D62E /* Category.swift in Sources */,
 				E2914E50204C134700F1FEE2 /* ToDoListViewController.swift in Sources */,
 				E2B2B4BC205DA3440000D62E /* Item.swift in Sources */,
+				E2573D0F20645D8900E9DA70 /* SwipeTableViewController.swift in Sources */,
 				E2914E4E204C134700F1FEE2 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -304,6 +310,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -311,6 +318,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -361,6 +369,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -368,6 +377,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;

@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-class ToDoListViewController: UITableViewController {
+class ToDoListViewController: SwipeTableViewController {
     
     var todoItems: Results<Item>?
     let realm = try! Realm()
@@ -22,20 +22,19 @@ class ToDoListViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
+                
     }
     
     //MARK: TableView DataSource Methods
-    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
         return todoItems?.count ?? 1
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ToDoItemCell", for: indexPath)
-        
+        let cell = super.tableView(tableView, cellForRowAt: indexPath)
+
         if let item = todoItems?[indexPath.row] {
             
             cell.textLabel?.text = item.title
@@ -55,7 +54,6 @@ class ToDoListViewController: UITableViewController {
         if let item = todoItems?[indexPath.row] {
             do {
                 try realm.write {
-                    //realm.delete(item)
                     item.done = !item.done
                 }
             } catch {
@@ -63,8 +61,8 @@ class ToDoListViewController: UITableViewController {
             }
         }
         tableView.reloadData()
-        
     }
+    
     //MARK: Add new item
     @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
         
@@ -104,12 +102,24 @@ class ToDoListViewController: UITableViewController {
     
     
     //MARK: Model maipulation methods
-    
     func loadItems() {
         
         todoItems = selectedCategory?.items.sorted(byKeyPath: "title", ascending: true)
         
         tableView.reloadData()
+    }
+    
+    //MARK: Delete item
+    override func updateModel(at indexPath: IndexPath) {
+        if let itemToDelete = todoItems?[indexPath.row] {
+            do {
+                try realm.write {
+                    realm.delete(itemToDelete)
+                }
+            } catch {
+                print("Error deleting item \(error)")
+            }
+        }
     }
 }
 

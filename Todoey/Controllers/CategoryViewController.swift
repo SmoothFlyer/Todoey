@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-class CategoryViewController: UITableViewController {
+class CategoryViewController: SwipeTableViewController {
 
     let realm = try! Realm()
     
@@ -22,23 +22,25 @@ class CategoryViewController: UITableViewController {
     }
 
     // MARK: - TableView DataSource Methods
-
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return categories?.count ?? 1
+        return categories?.count == 0 ? 1 : categories?.count ?? 1
     }
-
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-     
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell", for: indexPath)
         
-        cell.textLabel?.text = categories?[indexPath.row].name ?? "No Categories Added"
-
+        let cell = super.tableView(tableView, cellForRowAt: indexPath)
+        print(categories?.count)
+        if categories?.count != 0 {
+            cell.textLabel?.text = categories?[indexPath.row].name ?? "No Categories Added"
+        } else {
+            cell.textLabel?.text = "No Categories Added"
+        }
         return cell
     }
     
     //MARK: TableView Delegate Methods
-    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard categories?.count != 0 else { return } //No segue if no categories present
         performSegue(withIdentifier: "goToItems", sender: self)
     }
     
@@ -51,7 +53,6 @@ class CategoryViewController: UITableViewController {
     }
 
     //MARK: Data Manipulation Methods
-    
     func save(category: Category) {
         
         do {
@@ -70,6 +71,21 @@ class CategoryViewController: UITableViewController {
         categories = realm.objects(Category.self)
 
         tableView.reloadData()
+    }
+    
+    //MARK: Delete data from swipe
+    override func updateModel(at indexPath: IndexPath) {
+
+        if let categoryToDelete = categories?[indexPath.row] {
+            do {
+                try realm.write {
+                    realm.delete(categoryToDelete)
+                }
+            } catch {
+                print("Error deleting Category \(error)")
+            }
+        }
+        
     }
     
     //MARK: Add new categories
@@ -98,5 +114,4 @@ class CategoryViewController: UITableViewController {
         
         present(alert, animated: true, completion: nil)
     }
-    
 }

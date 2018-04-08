@@ -19,13 +19,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         UINavigationBar.appearance().tintColor = UIColor.white
         
-        print(Realm.Configuration.defaultConfiguration.fileURL!)
+        //print(Realm.Configuration.defaultConfiguration.fileURL!)
         
-//        do {
-//            let realm = try Realm()
-//        } catch {
-//            print("Error initialising Realm: \(error)")
-//        }
+        do {
+            _ = try Realm()
+        } catch {
+            print("Error initialising Realm: \(error)")
+        }
         return true
     }
 
